@@ -161,10 +161,17 @@ public class TelaCadastro extends javax.swing.JFrame {
             mostrar = conexao.salvar(user);
             if (mostrar == false) {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar cadastrar o usuario");
+                if (conexao.sqlErro.equals("com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '"+user.getNome()+"' for key 'nome'")){
+                    JOptionPane.showMessageDialog(null, "Já existe um usuario com esse nome, tente outro nome");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Cadastro concluido com sucesso");
+                TelaLoginOuCadastro telaInicial = new TelaLoginOuCadastro();
+                telaInicial.setVisible(true);
+                this.dispose();
             }
-        }
+        }   
+        conexao.desconectar();
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     /**

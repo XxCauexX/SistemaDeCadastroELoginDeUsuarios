@@ -19,8 +19,10 @@ import java.util.logging.Logger;
  */
 public class ConexaoDAO {
     
+    public String sqlErro;
     Connection conn;
     Statement st;
+    PreparedStatement stt;//para consulta com select retornando dados
     
     ResultSet rs;
     
@@ -43,8 +45,36 @@ public class ConexaoDAO {
             st.execute(inserir);
             return true;
         } catch (SQLException ex) {
+            sqlErro = ex.toString();
             System.out.println(ex);
             return false;
+        }
+    }
+    
+    public void desconectar() {
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+    
+    public Usuario logar(String nome, String senha) {
+        Usuario usuario = new Usuario();
+        try {
+            stt = conn.prepareStatement("SELECT nome,senha FROM usuarioCadastro where nome = ?");
+            stt.setString(1, nome);
+            rs=stt.executeQuery();
+            if (rs.next()) {
+                usuario.setNome(rs.getString("nome"));
+                usuario.setSenha(rs.getString("senha"));
+                return usuario;
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException ex) {
+            return null;
         }
     }
     

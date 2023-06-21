@@ -26,19 +26,24 @@ public class TelaLoginOuCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnTelaCadastrar = new javax.swing.JButton();
+        btnTelaEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTelaCadastrar.setText("Cadastrar");
+        btnTelaCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnTelaCadastrarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Entrar");
+        btnTelaEntrar.setText("Entrar");
+        btnTelaEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTelaEntrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,9 +52,9 @@ public class TelaLoginOuCadastro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(162, 162, 162)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(btnTelaCadastrar)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnTelaEntrar)
                         .addGap(10, 10, 10)))
                 .addContainerGap(158, Short.MAX_VALUE))
         );
@@ -57,21 +62,28 @@ public class TelaLoginOuCadastro extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addComponent(jButton1)
+                .addComponent(btnTelaCadastrar)
                 .addGap(50, 50, 50)
-                .addComponent(jButton2)
+                .addComponent(btnTelaEntrar)
                 .addContainerGap(112, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnTelaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelaCadastrarActionPerformed
         // TODO add your handling code here:
         TelaCadastro telaCadastro = new TelaCadastro();
         telaCadastro.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnTelaCadastrarActionPerformed
+
+    private void btnTelaEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelaEntrarActionPerformed
+        // TODO add your handling code here:
+        TelaDeLogin telaLogin = new TelaDeLogin();
+        telaLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnTelaEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,7 +121,7 @@ public class TelaLoginOuCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnTelaCadastrar;
+    private javax.swing.JButton btnTelaEntrar;
     // End of variables declaration//GEN-END:variables
 }
