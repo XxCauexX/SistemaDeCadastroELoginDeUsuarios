@@ -160,8 +160,11 @@ public class TelaLoginOuCadastro extends javax.swing.JFrame {
             if (usuario == null) {
                 JOptionPane.showMessageDialog(null, "Usuario não encontrado");
             } else {
+                Usuario usuarioLogado = new Usuario();
                 String nomeUsuario = usuario.getNome();
                 String senhaUsuario = usuario.getSenha();
+                usuarioLogado.setNome(nomeUsuario);
+                usuarioLogado.setSenha(senhaUsuario);
                 System.out.println("Usuario:" + nomeUsuario + "\n Senha:" + senhaUsuario);
                 if (nome.equals(nomeUsuario) && senhaFormatada.equals(senhaUsuario)) {
                     JOptionPane.showMessageDialog(null, "Logado com sucesso!");
