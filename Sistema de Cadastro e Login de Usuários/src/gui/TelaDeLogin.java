@@ -91,11 +91,11 @@ public class TelaDeLogin extends javax.swing.JFrame {
         SenhaFormatada formatar = new SenhaFormatada();
         Usuario user = new Usuario();
         ConexaoDAO conexao = new ConexaoDAO();
-        
+
         String nome = txtNomeLogin.getText();
         String senha = txtSenhaLogin.getText();
         String senhaFormatada = formatar.formatarParaMD5(senha);
-        
+
         boolean status = conexao.conectar();
         if (status == true) {
             Usuario usuario = conexao.logar(nome);
@@ -104,9 +104,9 @@ public class TelaDeLogin extends javax.swing.JFrame {
             } else {
                 String nomeUsuario = usuario.getNome();
                 String senhaUsuario = usuario.getSenha();
-                System.out.println("Usuario:"+nomeUsuario+"\n Senha:"+senhaUsuario);
-                if (nome.equals(nomeUsuario) && senhaFormatada.equals(senhaUsuario)){
-                    JOptionPane.showMessageDialog(null,"Logado com sucesso!");
+                System.out.println("Usuario:" + nomeUsuario + "\n Senha:" + senhaUsuario);
+                if (nome.equals(nomeUsuario) && senhaFormatada.equals(senhaUsuario)) {
+                    JOptionPane.showMessageDialog(null, "Logado com sucesso!");
                     TelaRestrita telaRestrita = new TelaRestrita();
                     telaRestrita.setVisible(true);
                     this.dispose();
@@ -117,7 +117,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
                 }
             }
         }
-        
+        conexao.desconectar();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**

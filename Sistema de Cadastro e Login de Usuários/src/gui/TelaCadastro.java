@@ -8,6 +8,7 @@ import dao.Usuario;
 import dao.ConexaoDAO;
 import dao.SenhaFormatada;
 import static dao.SenhaFormatada.formatarParaMD5;
+import static dao.ValidarEmail.validarEnderecoEmail;
 import javax.swing.JOptionPane;
 
 /**
@@ -145,35 +146,44 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         ConexaoDAO conexao = new ConexaoDAO();
         Usuario user = new Usuario();
-        
+
         user.setNome(txtNome.getText());
         user.setEmail(txtEmail.getText());
         String senha = txtSenha.getText();
         String senhaFormatada = formatarParaMD5(senha);
         //System.out.println(senhaFormatada);
         user.setSenha(senhaFormatada);
-        
+
         boolean mostrar = conexao.conectar();
-        if (user.getNome().equals("") || user.getEmail().equals("") || senha.equals("") ) {
+
+        if (user.getNome().length() < 1 || user.getEmail().length() < 1 || senha.length() < 1) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
         } else {
-            if (mostrar == false) {
-            JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados");
-        } else {
-            mostrar = conexao.salvar(user);
-            if (mostrar == false) {
-                JOptionPane.showMessageDialog(null, "Erro ao tentar cadastrar o usuario");
-                if (conexao.sqlErro.equals("com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '"+user.getNome()+"' for key 'nome'")){
-                    JOptionPane.showMessageDialog(null, "Já existe um usuario com esse nome, tente outro nome");
+            if (validarEnderecoEmail(user.getEmail())) {
+                if (senha.length() < 6) {
+                    JOptionPane.showMessageDialog(null, "A senha deve ter no minimo 6 caracteres");
+                } else {
+                    if (mostrar == false) {
+                        JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados");
+                    } else {
+                        mostrar = conexao.salvar(user);
+                        if (mostrar == false) {
+                            JOptionPane.showMessageDialog(null, "Erro ao tentar cadastrar o usuario");
+                            if (conexao.sqlErro.equals("com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '" + user.getNome() + "' for key 'nome'")) {
+                                JOptionPane.showMessageDialog(null, "Já existe um usuario com esse nome, tente outro nome");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Cadastro concluido com sucesso");
+                            TelaLoginOuCadastro telaInicial = new TelaLoginOuCadastro();
+                            telaInicial.setVisible(true);
+                            this.dispose();
+                        }
+                    }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Cadastro concluido com sucesso");
-                TelaLoginOuCadastro telaInicial = new TelaLoginOuCadastro();
-                telaInicial.setVisible(true);
-                this.dispose();
+                JOptionPane.showMessageDialog(null, "Esse email não é valido");
             }
-        }   
-        conexao.desconectar();
+            conexao.desconectar();
         }
     }//GEN-LAST:event_btnCadastroActionPerformed
 
