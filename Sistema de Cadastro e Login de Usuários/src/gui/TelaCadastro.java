@@ -154,8 +154,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         user.setSenha(senhaFormatada);
         
         boolean mostrar = conexao.conectar();
-        
-        if (mostrar == false) {
+        if (user.getNome().equals("") || user.getEmail().equals("") || senha.equals("") ) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        } else {
+            if (mostrar == false) {
             JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados");
         } else {
             mostrar = conexao.salvar(user);
@@ -172,6 +174,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         }   
         conexao.desconectar();
+        }
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     /**

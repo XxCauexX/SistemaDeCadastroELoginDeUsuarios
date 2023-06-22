@@ -59,7 +59,7 @@ public class ConexaoDAO {
         }
     }
     
-    public Usuario logar(String nome, String senha) {
+    public Usuario logar(String nome) {
         Usuario usuario = new Usuario();
         try {
             stt = conn.prepareStatement("SELECT nome,senha FROM usuarioCadastro where nome = ?");

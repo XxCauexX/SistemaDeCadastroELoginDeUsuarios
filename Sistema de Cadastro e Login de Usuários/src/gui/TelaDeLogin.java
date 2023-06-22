@@ -4,7 +4,10 @@
  */
 package gui;
 
+import dao.ConexaoDAO;
 import dao.SenhaFormatada;
+import dao.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,9 +89,34 @@ public class TelaDeLogin extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
         SenhaFormatada formatar = new SenhaFormatada();
+        Usuario user = new Usuario();
+        ConexaoDAO conexao = new ConexaoDAO();
+        
         String nome = txtNomeLogin.getText();
         String senha = txtSenhaLogin.getText();
         String senhaFormatada = formatar.formatarParaMD5(senha);
+        
+        boolean status = conexao.conectar();
+        if (status == true) {
+            Usuario usuario = conexao.logar(nome);
+            if (usuario == null) {
+                JOptionPane.showMessageDialog(null, "Usuario não encontrado");
+            } else {
+                String nomeUsuario = usuario.getNome();
+                String senhaUsuario = usuario.getSenha();
+                System.out.println("Usuario:"+nomeUsuario+"\n Senha:"+senhaUsuario);
+                if (nome.equals(nomeUsuario) && senhaFormatada.equals(senhaUsuario)){
+                    JOptionPane.showMessageDialog(null,"Logado com sucesso!");
+                    TelaRestrita telaRestrita = new TelaRestrita();
+                    telaRestrita.setVisible(true);
+                    this.dispose();
+                } else {
+                    if (!senhaFormatada.equals(senhaUsuario)) {
+                        System.out.println("Sua senha está incorreta!");
+                    }
+                }
+            }
+        }
         
     }//GEN-LAST:event_btnEntrarActionPerformed
 
