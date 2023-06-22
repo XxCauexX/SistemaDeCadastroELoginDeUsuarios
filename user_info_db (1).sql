@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/06/2023 às 22:43
+-- Tempo de geração: 22/06/2023 às 23:00
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -26,6 +26,23 @@ USE `user_info_db`;
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tarefa`
+--
+
+CREATE TABLE IF NOT EXISTS `tarefa` (
+  `cod_tarefas` varchar(100) NOT NULL,
+  `titulo` varchar(10) NOT NULL,
+  `descricao` varchar(350) DEFAULT NULL,
+  `dataCriacao` timestamp NOT NULL DEFAULT current_timestamp(),
+  `dataConclusao` datetime NOT NULL,
+  `codUsuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cod_tarefas`),
+  KEY `codUsuario` (`codUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `usuariocadastro`
 --
 
@@ -36,15 +53,17 @@ CREATE TABLE IF NOT EXISTS `usuariocadastro` (
   `senha` varchar(32) NOT NULL,
   PRIMARY KEY (`codUsuario`),
   UNIQUE KEY `nome` (`nome`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `usuariocadastro`
+-- Restrições para tabelas despejadas
 --
 
-INSERT INTO `usuariocadastro` (`codUsuario`, `nome`, `email`, `senha`) VALUES
-(4, 'Caue', 'caue@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(13, 'Felipe', 'felipe@gmail.com', '979d472a84804b9f647bc185a877a8b5');
+--
+-- Restrições para tabelas `tarefa`
+--
+ALTER TABLE `tarefa`
+  ADD CONSTRAINT `tarefa_ibfk_1` FOREIGN KEY (`codUsuario`) REFERENCES `usuariocadastro` (`codUsuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
