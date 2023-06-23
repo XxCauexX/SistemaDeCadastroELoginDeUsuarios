@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/cauea/OneDrive/Documentos/MeusProjetos/SistemaDeCadastroELoginDeUsuarios/Sistema%20de%20Cadastro%20e%20Login%20de%20Usuários/src/dao/ConexaoDAO.java</file>
+            <file>file:/C:/Users/cauea/OneDrive/Documentos/GitHub/SistemaDeCadastroELoginDeUsuarios/Sistema%20de%20Cadastro%20e%20Login%20de%20Usuários/src/gui/TelaLoginOuCadastro.java</file>
+            <file>file:/C:/Users/cauea/OneDrive/Documentos/GitHub/SistemaDeCadastroELoginDeUsuarios/Sistema%20de%20Cadastro%20e%20Login%20de%20Usuários/src/gui/TelaCadastro.java</file>
+            <file>file:/C:/Users/cauea/OneDrive/Documentos/GitHub/SistemaDeCadastroELoginDeUsuarios/Sistema%20de%20Cadastro%20e%20Login%20de%20Usuários/src/dao/Tarefa.java</file>
+            <file>file:/C:/Users/cauea/OneDrive/Documentos/GitHub/SistemaDeCadastroELoginDeUsuarios/Sistema%20de%20Cadastro%20e%20Login%20de%20Usuários/src/gui/TelaRestrita.java</file>
         </group>
     </open-files>
 </project-private>
