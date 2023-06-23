@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
+import dao.ConexaoDAO;
 import dao.Usuario;
+import javax.swing.JOptionPane;
 /**
  *
  * @author caue_3768
@@ -14,8 +16,20 @@ public class TelaRestrita extends javax.swing.JFrame {
      * Creates new form TelaRestrita
      */
     public TelaRestrita() {
+        TelaLoginOuCadastro telaLogin = new TelaLoginOuCadastro();
+        ConexaoDAO con = new ConexaoDAO();
         initComponents();
-        //txtNomeUsuario.setText(usuarioLogado.getNome);
+        
+        boolean status;
+        System.out.println(telaLogin.nomeUsuario);
+        txtNomeUsuario.setText(telaLogin.nomeUsuario);
+        status = con.conectar();
+       // if (status == false) {
+       //     JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados");
+        //} else {
+          //  Usuario usuario = con.logar(nomeUsuario);
+        //}
+//txtNomeUsuario.setText(usuarioLogado.getNome);
     }
 
     /**
@@ -38,15 +52,16 @@ public class TelaRestrita extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(641, 500));
 
         jPanel1.setBackground(new java.awt.Color(22, 28, 31));
         jPanel1.setForeground(new java.awt.Color(22, 28, 31));
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Bem Vindo");
 
-        jTextField1.setText("jTextField1");
-
+        txtNomeUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtNomeUsuario.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeUsuario.setText("jLabel2");
 
         btnSair.setText("Sair");
@@ -82,7 +97,7 @@ public class TelaRestrita extends javax.swing.JFrame {
                         .addComponent(btnVoltar)
                         .addGap(18, 18, 18)
                         .addComponent(btnSair)))
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addContainerGap(418, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +108,7 @@ public class TelaRestrita extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(38, 38, 38)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 362, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 361, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSair)
                     .addComponent(btnVoltar))

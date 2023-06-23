@@ -21,7 +21,9 @@ public class TelaLoginOuCadastro extends javax.swing.JFrame {
     public TelaLoginOuCadastro() {
         initComponents();
     }
-
+    
+    public String nomeUsuario;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,7 +163,7 @@ public class TelaLoginOuCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Usuario não encontrado");
             } else {
                 Usuario usuarioLogado = new Usuario();
-                String nomeUsuario = usuario.getNome();
+                nomeUsuario = usuario.getNome();
                 String senhaUsuario = usuario.getSenha();
                 usuarioLogado.setNome(nomeUsuario);
                 usuarioLogado.setSenha(senhaUsuario);
